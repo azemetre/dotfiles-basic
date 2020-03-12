@@ -6,3 +6,4 @@ my collection of dotfiles for Linux and OSX work spaces.
 - commit the basics (git, vim, bash)
 - create bash scripts to pull and build appropriate files
 - document the whys
+- add the adventure time color scheme to macos settings 
