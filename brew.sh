@@ -72,8 +72,6 @@ brew install unibilium
 brew install icu4c
 brew install libunistring
 brew install ncurses
-brew install libunistring
-brew install ncurses
 
 # Install new-age command-line tools
 brew install jq
