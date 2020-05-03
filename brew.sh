@@ -58,12 +58,6 @@ brew install sbt
 brew install lua
 brew install luajit
 
-# Install font tools
-brew tap bramstein/webfonttools
-brew install sfntwoff
-brew install sfnt2woff-zopfli
-brew install woff2
-
 # Install dependencies for other tools
 brew install libvterm
 brew install libuv
