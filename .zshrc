@@ -1,5 +1,13 @@
-# use command: "whoami" to determine what your user is
+# use command: "whoami" to determine what your use is
+# uncomment the proceeding line with your username
 # USER=
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -7,6 +15,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$USER/.oh-my-zsh"
 PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+
 
 # other exports
 export FZF_BASE=/usr/local/bin/fzf
@@ -21,7 +30,10 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # User configuration
 # new line in terminal after command prompt
@@ -70,14 +82,50 @@ gclonecd() {
   git clone "$1" && cd "$(basename "$1" .git)"
 }
 
+# create daily notes
+cminutes() {
+    today=$(date +"%Y-%m-%d")
+    if [ -e ~/notes/minutes/${today}-"$1"-minutes.md ];
+    then
+        echo "minutes/${today}-"$1"-minutes.md already created"
+    else
+        # echo "no file created"
+        vim -c "+normal ggO# Meeting Minutes" -c "+normal ggo# $(date)" -c ':s/$/\r/' -c 'se nohlsearch' ~/notes/"${today}-"$1"-minutes.md"
+    fi
+}
+
+# create daily notes
+cnotes() {
+    today=$(date +"%Y-%m-%d")
+    if [ -e ~/notes/${today}-notes.md ];
+    then
+        echo "${today}-notes.md already created"
+    else
+        # echo "no file created"
+        vim -c "+normal ggO# What Did I Do?" -c "+normal ggo# $(date)" -c ':s/$/\r/' -c 'se nohlsearch' ~/notes/${today}-notes.md
+    fi
+}
+
+# create daily notes
+wnotes() {
+    today=$(date +"%Y-%m-%d")
+    if [ ! -f ~/notes/${today}-notes.md ];
+    then
+        echo "${today}-notes.md not created"
+    else
+        vim ~/notes/${today}-notes.md
+    fi
+}
+
 # aliases
+alias ll='ls -la'
+alias ~='cd ~'
 alias zshconfig='vim ~/.zshrc'
 alias ohmyzsh='vim ~/.oh-my-zsh'
 alias szsh='source ~/.zshrc'
 alias bashconfig='vim ~/.bash_profile'
 alias sbash='source ~/.bash_profile'
-alias ll='ls -la'
-alias ~='cd ~'
+alias notes='cd ~/notes'
 alias neovim='nvim'
 alias vim='nvim'
 alias vi='nvim'
