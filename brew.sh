@@ -45,7 +45,7 @@ brew install gmp
 
 # Install shells
 brew install zsh
-brew install powerlevel9k
+brew install romkatv/powerlevel10k/powerlevel10k
 
 # Install lanuages
 brew install python
