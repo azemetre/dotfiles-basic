@@ -33,6 +33,7 @@ brew install msgpack
 brew install openssl
 brew install gdbm
 brew install readline
+brew install watchman
 
 # Install more recent versions of macOS tools
 brew install vim --with-override-system-vi
