@@ -81,6 +81,7 @@ brew install hexyl
 brew install diskus
 brew install imagemagick
 brew install homeshick
+brew install ffmpeg
 
 # Install software
 brew install neovim
